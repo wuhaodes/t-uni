@@ -1,5 +1,3 @@
-import Vue, { DirectiveFunction } from "vue";
-
 // 全局声明类型Basic/Dic/Response
 declare global {
   declare type Basic = boolean | number | string | undefined | null;
@@ -17,6 +15,7 @@ declare global {
 
 // .vue中声明Vue类型
 declare module "*.vue" {
+  import Vue from "vue";
   export default Vue;
 }
 
@@ -30,7 +29,7 @@ declare module "vue/types/vue" {
       put(api: string, data?: Dic): Promise<Response>;
       delete(api: string, data?: Dic): Promise<Response>;
     };
-    $vm: Vue.Component
+    $vm: Vue.Component;
     // 该方法存在于引入mixins ProcessControl的组件
     complete: (res: Dic | Basic) => any;
     // 该方法存在于被wrap和wrap包裹的页面
@@ -42,4 +41,3 @@ declare module "vue/types/vue" {
     select(id: string): any;
   }
 }
-
