@@ -8,11 +8,14 @@ export default class ProcessControl extends Vue {
   reset() {
     this.show = false;
   }
-  cancel() {
+  handleCancel() {
     this.complete(false);
   }
-  confirm() {
+  handleConfirm() {
     this.complete(true);
+  }
+  handleMaskMove() {
+    return false;
   }
 
   /**

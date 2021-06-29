@@ -1,4 +1,6 @@
 // 全局声明类型Basic/Dic/Response
+
+import Vue from "vue";
 declare global {
   declare type Basic = boolean | number | string | undefined | null;
 
@@ -29,15 +31,24 @@ declare module "vue/types/vue" {
       put(api: string, data?: Dic): Promise<Response>;
       delete(api: string, data?: Dic): Promise<Response>;
     };
-    $vm: Vue.Component;
     // 该方法存在于引入mixins ProcessControl的组件
-    complete: (res: Dic | Basic) => any;
+    complete: (res: any) => any;
     // 该方法存在于被wrap和wrap包裹的页面
     /**
      * @description 获取组件实例
-     * @param id 组件唯一id 注册于wrap中
+     * @param refKey 组件ref 注册于wrap中
      * @returns 返回组件实例vm
      */
-    select(id: string): any;
+    select(
+      refKey: string
+    ): {
+      display(opts?: {
+        showFork?: boolean;
+        title?: string;
+        content?: string;
+        confirm?: string;
+        cancel?: string;
+      }): Promise<any>;
+    };
   }
 }

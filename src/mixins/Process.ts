@@ -1,5 +1,4 @@
 import { Vue, Component } from "vue-property-decorator";
-import ProcessControl from "./ProcessControl";
 
 @Component
 export default class Process extends Vue {
@@ -7,7 +6,7 @@ export default class Process extends Vue {
   mounted() {}
   select(id: string) {
     const childrens = this.mapChildrens;
-    const childInstance = childrens[id] as ProcessControl;
+    const childInstance = childrens[id] as any;
     return childInstance.$vm || childInstance;
   }
 }

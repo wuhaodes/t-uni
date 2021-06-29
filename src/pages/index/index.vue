@@ -12,8 +12,8 @@ export default class Index extends Vue {
   async mounted() {
     const res = await this.select("eject").display({
       title: "提示",
-      confirmText: "确定",
-      cancelText: "取消",
+      confirm: "确定",
+      cancel: "取消",
       content: "删除后无法恢复",
     });
     console.log(res, "res");

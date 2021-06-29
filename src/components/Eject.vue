@@ -21,17 +21,17 @@
         <view class="eject-content" v-if="content">
           {{ content }}
         </view>
-        <view class="operate-view" v-if="cancelText">
-          <view class="operate-cancel" @click.stop="cancel">{{
-            cancelText
+        <view class="operate-view" v-if="cancel">
+          <view class="operate-cancel" @click.stop="handleCancel">{{
+            cancel
           }}</view>
-          <view class="operate-confirm confirm1" @click.stop="confirm">{{
-            confirmText
+          <view class="operate-confirm confirm1" @click.stop="handleConfirm">{{
+            confirm
           }}</view>
         </view>
-        <view class="operate-view" v-else-if="confirmText">
-          <view class="operate-confirm confirm2" @click.stop="confirm">{{
-            confirmText
+        <view class="operate-view" v-else-if="confirm">
+          <view class="operate-confirm confirm2" @click.stop="handleConfirm">{{
+            confirm
           }}</view>
         </view>
         <view v-else></view>
@@ -47,8 +47,8 @@ import ProcessControl from "@/mixins/ProcessControl";
 @Component
 export default class Eject extends Mixins(ProcessControl) {
   showFork = false;
-  cancelText = "";
-  confirmText = "";
+  cancel = "";
+  confirm = "";
   content = "";
   title = "";
   mounted() {}
