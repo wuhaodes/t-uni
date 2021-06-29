@@ -51,7 +51,13 @@ export default class Eject extends Mixins(ProcessControl) {
   confirm = "";
   content = "";
   title = "";
-  mounted() {}
+  mounted() {
+
+  }
+  test(res: Dic){
+
+  }
+  
 }
 </script>
 
