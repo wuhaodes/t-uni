@@ -57,13 +57,18 @@ async function upload(desc = 'first upload by ci') {
 }
 // 立即执行函数执行上传等异步任务
 ; (async () => {
+    const user = await inquirer.prompt({
+        type: "input",
+        name: 'name',
+        message: "请输入上传人名称："
+    })
     // 获取上传描述
-    const prot = await inquirer.prompt({
+    const info = await inquirer.prompt({
         type: "input",
         name: "desc",
         message: "请输入上传描述：",
 
     })
-    await upload(prot.desc);
+    await upload(user.name + ":" + info.desc);
     writeFileSync(extJsonPath, JSON.stringify({ ...ext, version }, null, "\t"))
 })()
