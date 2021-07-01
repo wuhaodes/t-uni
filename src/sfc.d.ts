@@ -5,7 +5,7 @@ declare global {
   declare type Basic = boolean | number | string | undefined | null;
 
   declare interface Dic<T = any> {
-    [index: string | number]: T;
+    [index: string]: T;
   }
 
   declare interface Response<T = any> {
@@ -13,17 +13,30 @@ declare global {
     data: T;
     code: number;
   }
+
+  declare type MethodType = UniApp.RequestOptions.method;
+
+  declare type RequestOptionsType = {
+    catch: boolean;
+    loading: boolean;
+    name: string;
+  };
 }
 
 // Vue类型中声明属性和方法
 declare module "vue/types/vue" {
   interface Vue {
     $http: {
-      (methods: string, api: string, options?: Dic): Promise<Response>;
-      get(api: string, params?: Dic): Promise<Response>;
-      post(api: string, data?: Dic): Promise<Response>;
-      put(api: string, data?: Dic): Promise<Response>;
-      delete(api: string, data?: Dic): Promise<Response>;
+      get(
+        api: string,
+        params?: Dic,
+        opts?: RequestOptionsType
+      ): Promise<Response>;
+      post(
+        api: string,
+        data?: Dic,
+        opts?: RequestOptionsType
+      ): Promise<Response>;
     };
     // 该方法存在于引入mixins ProcessControl的组件
     complete: (res: any) => any;
